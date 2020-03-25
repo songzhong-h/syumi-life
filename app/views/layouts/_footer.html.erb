@@ -1,0 +1,70 @@
+<footer class="footer style-2">
+  <div class="container">
+    <div class="row">
+          <ul class="col-md-3 menubar-content nav nav-item">
+           <p>趣味探しの手助け</p>
+          <li><%= image_tag('logo2.png') %><li>
+          </ul>
+
+          <ul class="col-md-4">
+          <h4>Link</h4>
+          <li class="menubar-content nav nav-item">
+            <%= link_to "トップ", root_path %>
+          </li>
+          <li class="menubar-content nav nav-item">
+            <%= link_to "アバウト", about_path %>
+          </li>
+          <li class="menubar-content nav nav-item">
+            <%= link_to "投稿一覧", hobby_images_path %>
+          </li>
+          <li class="menubar-content nav nav-item">
+            <%= link_to "カテゴリー", categories_path %>
+          </li>
+          <% if user_signed_in? %>
+          <li class="menubar-content nav nav-item">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </li>
+          <li class="menubar-content nav nav-item">
+            <%= link_to '投稿フォーム', new_hobby_image_path %>
+          </li>
+          <li class="menubar-content nav nav-item">
+            <%= link_to 'マイページ', user_path(current_user.id) %>
+          </li>
+          <% else %>
+          <li class="menubar-content nav nav-item">
+            <%= link_to "新規登録", new_user_registration_path %>
+          </li>
+          <li class="menubar-content nav nav-item">
+            <%= link_to "ログイン", new_user_session_path %>
+          </li>
+          <% end %>
+          </ul>
+
+          <ul class="col-md-4">
+          <h4>コンテンツ</h4>
+            <li class="menubar-content nav nav-item">
+              <%= link_to "今日のおすすめ"%>
+            </li>
+            <li class="menubar-content nav nav-item">
+              <%= link_to "投稿者ランキング"%>
+            </li>
+            <li class="menubar-content nav nav-item">
+              <%= link_to "趣味ランキング"%>
+            </li>
+            <li class="menubar-content nav nav-item">
+              <%= link_to "いいねランキング"%>
+            </li>
+            <li class="menubar-content nav nav-item">
+              <%= link_to "総合ランキング"%>
+            </li>
+          </ul>
+
+          <span id="back" >
+            <a href="#">
+                <img src="assets/arrow.png" alt="サンプル" width="50" height="50" class="py-5">
+            </a>
+          </span>
+
+      </div>
+    </div>
+</footer>

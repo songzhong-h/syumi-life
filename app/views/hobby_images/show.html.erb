@@ -1,0 +1,132 @@
+<section class="sct-color-1 slice">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 hobby_images_container">
+        <div class="hobby-item">
+
+         <div class="hobby-meta-top">
+          　 <div class="hobby-image">
+            　 <%= attachment_image_tag @hobby_image, :image %>
+          　 </div>
+        　 </div>
+        <div class="hobby-content">
+          <h2 class="hobby-title">
+            <p><%= @hobby_image.name %></p>
+          </h2>
+          <ul class="meta-info-cells v4 float-wrapper">
+            <li>
+             <i class="fa fa-user"></i>By<a href="#">
+               <%= @hobby_image.user.name %></a>
+             </li>
+             <li>
+              <i class="fa fa-calendar"></i><%= @hobby_image.created_at.strftime('%Y/%m/%d') %>
+            </li>
+            <!-- いいね機能 -->
+            <% if @hobby_image.favorited_by?(current_user) %>
+            <li>
+              <%= link_to hobby_image_favorites_path(@hobby_image), method: :delete do %>
+              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+              <%= @hobby_image.favorites.count %> いいね
+              <% end %>
+            </li>
+            <% else %>
+            <li>
+              <%= link_to hobby_image_favorites_path(@hobby_image), method: :post do %>
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+              <%= @hobby_image.favorites.count %> いいね
+              <% end %>
+            </li>
+            <% end %>
+            <!-- end -->
+            <li>
+              <i class="fa fa-comment"></i>
+              <a href="#comments"><%= @hobby_image.hobby_comments.count %></a>
+            </li>
+            <li>
+              <% if @hobby_image.user == current_user %>
+              <%= link_to "削除", hobby_image_path(@hobby_image), method: :delete %>
+              <% end %>
+
+            </li>
+          </ul>
+          <div class="hobby-content-inner mt-20">
+            <p><%= @hobby_image.caption %></p>
+          </div>
+        </div>
+
+        <div class="hobby-content">
+          <h2 class="hobby-title">ここにタイトル</h2>
+          <ul class="meta-info-cells v4 float-wrapper">
+            <li>
+              <i class="fa fa-user"></i>By
+              <a href="#">投稿者名</a>
+            </li>
+            <li>
+              <i class="fa fa-calendar"></i>2017/07/21
+            </li>
+            <li>
+              <i class="fa fa-heart"></i>
+              <a href="#">202 いいね</a>
+            </li>
+            <li>
+              <i class="fa fa-comment"></i>
+              <a href="#comments">4</a>
+            </li>
+          </ul>
+          <div class="hobby-content-inner mt-20">
+            <p>ここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキストここにテキスト</p>
+          </div>
+        </div>
+
+
+
+
+        <div class="comment-list bt style-2" id="comments">
+          <div class="float-wrapper">
+            <h2 class="comment-count"><%= @hobby_image.hobby_comments.count %>件コメント</h2>
+          </div>
+          <ol>
+            <% @hobby_image.hobby_comments.each do |hobby_comment| %>
+            <li class="comment">
+              <div class="comment-body bb">
+                <div class="comment-avatar">
+                  <div class="avatar">
+                    <%= image_tag('https://picsum.photos/200', style: "width: 60px; height: 60px;") %>
+                  </div>
+                </div>
+                <div class="comment-text">
+                  <div class="comment-author clearfix">
+                    <a href="#" class="link-author"><%= hobby_comment.user.name %></a>
+                    <span class="comment-meta">
+                      <span class="comment-date"><%= hobby_comment.created_at.strftime('%Y/%m/%d') %></span>
+                    </span>
+                  </div>
+                  <div class="comment-entry"><%= hobby_comment.comment %></div>
+                </div>
+              </div>
+            </li>
+            <% end %>
+          </ol>
+        </div>
+        <hr>
+
+        <!-- Add comment section -->
+        <div class="section-title-wrapper style-1 v1 mt-30" id="divAddComment">
+          <h3 class="section-title left">
+            <span>コメント</span>
+          </h3>
+        </div>
+        <%= form_for [@hobby_image, @hobby_comment] do |f| %>
+        <div class="row">
+          <div class="col-sm-12">
+            <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+          </div>
+        </div>
+        <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+</section>

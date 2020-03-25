@@ -1,0 +1,47 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <nav class="navbar navbar-expand navbar-light">
+          <a class="navbar-logo col-md-6" href="/"><%= image_tag('logo2.png') %></a>
+          <%= search_form_for @q, url: categories_path do |f| %>
+          <%= f.search_field :name_cont %>
+          <%= f.submit %>
+          <% end %>
+          <ul class="nav navbar-nav navbar-right col-md-6" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+           <li class="nav-item">
+            <%= link_to "トップ", root_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "アバウト", about_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "投稿一覧", hobby_images_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "カテゴリー", categories_path %>
+          </li>
+          <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '投稿フォーム', new_hobby_image_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'マイページ', user_path(current_user.id) %>
+          </li>
+          <% else %>
+          <li class="nav-item">
+            <%= link_to "新規登録", new_user_registration_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログイン", new_user_session_path %>
+          </li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+</header>

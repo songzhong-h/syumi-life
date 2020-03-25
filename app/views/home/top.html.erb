@@ -1,0 +1,61 @@
+  <main class="clearfix">
+        <section class="blog">
+      <h2 class="blog-headline">Recent Blogs</h2>
+      <div class="blog-box">
+        <% @categories.each do |category| %>
+          <div class="blog-item clearfix">
+            <div class="blog-image"><%= image_tag('img/forest.jpg',  class: 'blog-image') %></div>
+            <section class="blog-text">
+              <h3 class="blog-text-headline"><%= link_to category.title, category_path(category) %></h3>
+              <p class="blog-date"><%= category.created_at %></p>
+              <span class="category"><%= category.name %></span>
+            </section>
+          </div>
+        <% end %>
+      </div>
+      <div class="pagination">
+        <p><<</p>
+        <p>< </p>
+        <p>1 </p>
+        <p>2 </p>
+        <p>3 </p>
+        <p>> </p>
+        <p>>> </p>
+      </div>
+    </section>
+    <div class="sidebar">
+      <section class="popular">
+        <h2 class="sidebar-headline">Popular</h2>
+        <div class="sidebar-contents">
+          <p class="popular-text">To solve old problems,<br>study new species</p>
+          <p class="popular-text">Why Earth may someday<br>look like Mars</p>
+          <p class="popular-text">What will humans look<br>like in 100 years?</p>
+          <p class="popular-text">How to grow a forest<br>in your backyard</p>
+          <p class="popular-text">How humans could evolve<br>to survive in space</p>
+        </div>
+      </section>
+      <section class="instagram">
+        <h2 class="instagram-headline">Instagram</h2>
+        <div class="sidebar-contents clearfix">
+          <div class="instagram-box"></div>
+          <div class="instagram-box"></div>
+          <div class="instagram-box"></div>
+          <div class="instagram-box"></div>
+          <div class="instagram-box"></div>
+          <div class="instagram-box"></div>
+        </div>
+      </section>
+      <section class="categories">
+        <h2 class="categories-headline">Categories</h2>
+        <div class="sidebar-contents">
+          <p class="categories-text">Technology(15)</p>
+          <p class="categories-text">Business(23)</p>
+          <p class="categories-text">Entertainment(12)</p>
+          <p class="categories-text">Nature(32)</p>
+          <p class="categories-text">Education(9)</p>
+          <p class="categories-text">Adventure(23)</p>
+          <p class="categories-text">Communication(14)</p>
+        </div>
+      </section>
+    </div>
+  </main>

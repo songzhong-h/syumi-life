@@ -1,0 +1,42 @@
+<section class="sct-color-1 slice">
+  <div class="container-fluid masonry-container">
+    <div class="row">
+      <div class="col-md-8 col-sm-offset-2">
+        <div class="masonry-wrapper-cols">
+          <div class="masonry-gutter"></div>
+          <% hobby_images.each do |hobby_image| %>
+          <div class="masonry-block">
+            <div class="block block-image v1">
+              <div class="block-image">
+                <div class="view view-first">
+                  <%= link_to hobby_image_path(hobby_image.id) do %>
+                  <%= attachment_image_tag hobby_image, :image %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="block-content">
+                <%= attachment_image_tag hobby_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class: "img-circle pull-left profile-thumb" %>
+                <h3 class="block-title">
+                  <%= link_to hobby_image_path(hobby_image.id) do %>
+                  <i class="fa fa-map-marker"></i><%= hobby_image.name %>
+                  <% end %>
+                </h3>
+                <p><%= hobby_image.caption %></p>
+                <ul class="inline-meta">
+                  <li>By
+                    <%= hobby_image.user.name %>
+                  </li>
+                  <li>
+                    <%= link_to "#{hobby_image.hobby_comments.count} コメント", hobby_image_path(hobby_image.id) %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <%= paginate hobby_images, class: "paginate"  %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
