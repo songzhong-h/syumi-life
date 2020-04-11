@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_111826) do
+ActiveRecord::Schema.define(version: 2020_04_11_184153) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_111826) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "score", precision: 5, scale: 3
   end
 
   create_table "hobby_images", force: :cascade do |t|
@@ -39,6 +40,13 @@ ActiveRecord::Schema.define(version: 2020_03_23_111826) do
     t.text "name"
     t.string "image_id"
     t.text "caption"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "hobby_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -4,6 +4,7 @@ class HobbyCommentsController < ApplicationController
     comment = HobbyComment.new(hobby_comment_params)
     comment.user_id = current_user.id
     comment.hobby_image_id = hobby_image.id
+    comment.score = Language.get_data(hobby_comment_params[:comment])
     comment.save
     redirect_to hobby_image_path(hobby_image)
   end
@@ -13,3 +14,4 @@ class HobbyCommentsController < ApplicationController
     params.require(:hobby_comment).permit(:comment)
     end
 end
+

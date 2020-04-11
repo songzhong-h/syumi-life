@@ -21,6 +21,11 @@
                   <i class="fa fa-map-marker"></i><%= hobby_image.name %>
                   <% end %>
                 </h3>
+                    <div class="block-content">
+                    <% hobby_image.tags.each do |tag| %>
+                      <span class="label label-primary"><%= tag.name %></span>
+                    <% end %>
+                  </div>
                 <p><%= hobby_image.caption %></p>
                 <ul class="inline-meta">
                   <li>By

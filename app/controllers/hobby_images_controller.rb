@@ -4,13 +4,17 @@ class HobbyImagesController < ApplicationController
     end
 
     def create
-	    @hobby_image = HobbyImage.new(hobby_image_params)
-	    @hobby_image.user_id = current_user.id
-	    if @hobby_image.save
-	      redirect_to hobby_images_path
+        @hobby_image = HobbyImage.new(hobby_image_params)
+        @hobby_image.user_id = current_user.id
+        if @hobby_image.save
+          tags = Vision.get_image_data(@hobby_image.image)
+          tags.each do |tag|
+            @hobby_image.tags.create(name: tag)
+          end
+          redirect_to hobby_image_path(@hobby_image)
         else
-           render :new
-       end
+          render :new
+        end
     end
 
     def index
