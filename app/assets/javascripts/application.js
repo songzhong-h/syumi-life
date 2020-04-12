@@ -15,3 +15,12 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+
+$(function() {
+    $('.top').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    });
+});

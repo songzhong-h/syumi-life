@@ -1,8 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.12.1"
 
-set :application, "syumi-life"
-set :repo_url, "git@github.com:songzhong-h/syumi-life.git"
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -38,13 +37,14 @@ set :repo_url, "git@github.com:songzhong-h/syumi-life.git"
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
+set :application, "syumi-life"
+set :repo_url, "git@github.com:songzhong-h/syumi-life.git"
 
 set :deploy_to, "/home/ec2-user/syumi-life"
 set :rbenv_ruby, '2.5.7'
 set :linked_files, %w{config/master.key .env}
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
-server '3.115.114.76', user: 'ec2-user', roles: %w{app web db}
 
 
 
